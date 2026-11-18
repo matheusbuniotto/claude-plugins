@@ -1,7 +1,10 @@
 {
   "name": "sol",
-  "version": "0.1.0",
-  "description": "Delegate non-trivial work to subagents with a durable file store, ADHD-friendly output, hook-enforced limits, opt-in PR reviewer and a kill switch for stuck loops.",
+  "version": "0.2.0",
+  "description": "Delegate non-trivial work to subagents with a durable file store, terse output, hook-enforced limits, an opt-in PR reviewer and a stuck-loop kill switch.",
   "author": { "name": "Matheus Buniotto" },
-  "license": "MIT"
+  "homepage": "https://github.com/matheusbuniotto/claude-plugins/tree/master/plugins/sol",
+  "repository": "https://github.com/matheusbuniotto/claude-plugins",
+  "license": "MIT",
+  "keywords": ["subagents", "delegation", "code-review", "hooks", "productivity"]
 }

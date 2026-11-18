@@ -1,22 +1,36 @@
 # sol
 
-Claude Code plugin: keep the main chat small by delegating non-trivial work to subagents.
-
-- **Delegation**: `sol-researcher`, `sol-coder`, `sol-generic` (+ `-hi` high-effort) with model routing by task complexity.
-- **Durable store**: `.sol/<task-id>/` (`task.md`, `out.md`, `log.jsonl`) so long runs resume after interruptions.
-- **Hook-enforced limits**: max 4 parallel agents, 8 web calls per researcher, researcher/reviewer write only inside `.sol/`, SubagentStop blocks until `out.md` exists.
-- **Terse output**: status line + max 3 bullets. `▶ Next:` only when you must decide; optional `💡 Suggest:`.
-- **Pro mode**: `pro on [rounds]` proactively chains follow-ups.
-- **PR reviewer (opt-in)**: `review on [post]` writes `.sol/REVIEW`; `sol-reviewer` drafts an evidence-first review (method adapted from [the-judge](https://github.com/tech-leads-club/agent-skills)). Drafts only unless `mode=post`.
-- **Kill switch**: say "stop"/"unstuck", or run `skills/sol/stop.sh [--all]`.
-- **Fail-open**: `run.sh` skips hooks if `hook.sh` has a syntax error, so a bad edit never locks tools.
+Claude Code plugin that keeps the main chat small: non-trivial work goes to subagents, results live in a durable `.sol/` store, replies stay short.
 
 ## Install
 ```
-/plugin marketplace add <github-user>/claude-plugins
-/plugin install sol@matheus-plugins
+/plugin install sol --marketplace matheusbuniotto/claude-plugins
 ```
-Requires `jq` and `bash`.
+Requires `bash` and `jq`. If `jq` is missing the hooks disable themselves and say so; nothing breaks.
+
+## What you get
+| piece | what it does |
+|---|---|
+| agents | `sol-researcher`, `sol-coder`, `sol-generic`, each with a `-hi` high-effort variant; `sol-reviewer` |
+| store | `.sol/<task-id>/` with `task.md`, `out.md`, `log.jsonl`; long runs resume after interruptions |
+| hook limits | max 4 parallel agents, 8 web calls per researcher, researcher and reviewer write only in `.sol/` |
+| terse output | status line + max 3 bullets; `▶ Next:` only when you must decide |
+| pro mode | `/sol:pro [rounds]` chains follow-ups, stops at 0 |
+| PR reviewer | `/sol:review on [post]`; evidence-first draft review, nothing posted unless `mode=post` |
+| kill switch | `/sol:stop` (or say "stop"); frees agent slots, keeps stores |
+
+## Configure (per project, all optional)
+- `.sol/STYLE`: replace the default output-style text injected at session start.
+- `.sol/REVIEW`: `mode=draft|post`, `rounds=3`, `lang=en`.
+- Env: `SOL_MAX_PAR` (default 4), `SOL_MAX_WEB` (default 8).
+- Add `.sol/` to your `.gitignore`.
+
+## Troubleshooting
+- Hooks seem inactive: `claude --debug`; look for `sol:` lines. Missing `jq` or a syntax error in `hook.sh` prints a one-line warning.
+- "4 sol agents already running": run `/sol:stop`.
+- Reviewer will not post: set `mode=post` in `.sol/REVIEW` on purpose.
 
 ## Develop
-`bash -n skills/sol/hook.sh` before committing.
+`bash plugins/sol/tests/test.sh`, then `claude plugin validate .`. The reviewer method is adapted from [the-judge](https://github.com/tech-leads-club/agent-skills).
+
+MIT licensed.

@@ -6,7 +6,10 @@
     {
       "name": "sol",
       "source": "./plugins/sol",
-      "description": "Subagent delegation with durable stores, terse output, opt-in PR reviewer and a stuck-loop kill switch."
+      "description": "Subagent delegation with durable stores, terse output, opt-in PR reviewer and a stuck-loop kill switch.",
+      "version": "0.2.0",
+      "category": "productivity",
+      "keywords": ["subagents", "delegation", "code-review", "hooks"]
     }
   ]
 }

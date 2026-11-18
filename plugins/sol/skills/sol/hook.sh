@@ -63,7 +63,7 @@ stop) # SubagentStop: block until out.md exists, then unregister
   else done_; fi
   ;;
 start) # SessionStart: list leftover stores; add the pro-mode directive when .sol/PRO exists
-  c="$STYLE"
+  c="$STYLE"; [ -s .sol/STYLE ] && c=$(cat .sol/STYLE)   # per-project override of the output style
   [ -f .sol/PRO ] && c="$c
 sol PRO mode on ($(cat .sol/PRO) rounds left). After relaying each result, read only its out.md '## next' and dispatch the best 1-2 follow-ups, plus one review/improvement pass on finished work; decrement .sol/PRO each round, stop at 0 or when nothing useful remains, then give the user a 3-line summary. Never loop on the same finding twice."
   [ -f .sol/REVIEW ] && c="$c
