@@ -1,0 +1,11 @@
+{
+  "name": "sol-status",
+  "version": "0.1.0",
+  "description": "Status-line entry for sol: running and stuck agents, pro and review mode, read from .sol/.",
+  "author": { "name": "Matheus Buniotto" },
+  "license": "MIT",
+  "keywords": ["status", "subagents", "sol"],
+  "userConfig": {
+    "stuckMinutes": { "type": "number", "title": "Stuck after (minutes)", "description": "Flag an unfinished sol task as stuck after this many minutes without activity.", "default": 10 }
+  }
+}

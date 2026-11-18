@@ -1,7 +1,11 @@
 {
   "name": "matheus-plugins",
-  "owner": { "name": "Matheus Buniotto" },
-  "metadata": { "description": "Personal Claude Code plugins" },
+  "owner": {
+    "name": "Matheus Buniotto"
+  },
+  "metadata": {
+    "description": "Personal Claude Code plugins"
+  },
   "plugins": [
     {
       "name": "sol",
@@ -9,7 +13,23 @@
       "description": "Subagent delegation with durable stores, terse output, opt-in PR reviewer and a stuck-loop kill switch.",
       "version": "0.2.0",
       "category": "productivity",
-      "keywords": ["subagents", "delegation", "code-review", "hooks"]
+      "keywords": [
+        "subagents",
+        "delegation",
+        "code-review",
+        "hooks"
+      ]
+    },
+    {
+      "name": "sol-status",
+      "source": "./plugins/sol-status",
+      "description": "Status-line entry for sol: running and stuck agents, pro and review mode.",
+      "version": "0.1.0",
+      "category": "productivity",
+      "keywords": [
+        "status",
+        "sol"
+      ]
     }
   ]
 }
