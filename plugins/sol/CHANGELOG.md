@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+- `planner` agent: simple plan, TDD or analytical design doc (read-only on the project).
+- `visual-explainer` skill: ELI10 visual HTML explainers, plus planner mode for visual design docs.
+
 ## 0.2.0
 - Slash commands: `/sol:stop`, `/sol:review`, `/sol:pro`.
 - Opt-in PR reviewer (`sol-reviewer`), drafts only unless `mode=post`.

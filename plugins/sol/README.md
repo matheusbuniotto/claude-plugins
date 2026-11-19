@@ -11,12 +11,13 @@ Requires `bash` and `jq`. If `jq` is missing the hooks disable themselves and sa
 ## What you get
 | piece | what it does |
 |---|---|
-| agents | `sol-researcher`, `sol-coder`, `sol-generic`, each with a `-hi` high-effort variant; `sol-reviewer` |
+| agents | `sol-researcher`, `sol-coder`, `sol-generic`, each with a `-hi` high-effort variant; `sol-reviewer`; `planner` (plan, TDD, analytical design doc) |
 | store | `.sol/<task-id>/` with `task.md`, `out.md`, `log.jsonl`; long runs resume after interruptions |
 | hook limits | max 4 parallel agents, 8 web calls per researcher, researcher and reviewer write only in `.sol/` |
 | terse output | status line + max 3 bullets; `▶ Next:` only when you must decide |
 | pro mode | `/sol:pro [rounds]` chains follow-ups, stops at 0 |
 | PR reviewer | `/sol:review on [post]`; evidence-first draft review, nothing posted unless `mode=post` |
+| visual explainer | `visual-explainer` skill: big-picture ELI10 HTML pages and visual design docs |
 | kill switch | `/sol:stop` (or say "stop"); frees agent slots, keeps stores |
 
 ## Configure (per project, all optional)
